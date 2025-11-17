@@ -1,9 +1,22 @@
 // Copyright © 2025 TIS
 // Licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License
 // Full license text: https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode or in LICENSE file
+use std::env;
 use std::fs;
-use std::io;
 use std::io::Read;
+use std::time::Duration;
+
+struct Config {
+    fast: bool,
+}
+
+impl Config {
+    fn sleep(&self, dur: Duration) {
+        if !self.fast {
+            std::thread::sleep(dur);
+        }
+    }
+}
 
 // Searches for pattern in data and replaces the last byte of the found sequence with new_last_byte.
 // Returns Some(offset) where offset is the position of the replaced byte (index within data), or None if not found.
@@ -20,19 +33,36 @@ fn patch_pattern_in_vec(data: &mut [u8], pattern: &[u8], new_last_byte: u8) -> O
     }
 }
 
+// function for confirmation
+fn press_enter() {
+    let _ = std::io::stdin().read(&mut [0u8]);
+}
+
 fn main() -> std::io::Result<()> {
-    println!("██████ ██████ ██████ ██  ██  █████ 
+    let args: Vec<String> = env::args().collect();
+    let fast_mode = args.iter().any(|a| a == "--fast"); // If there is --fast, enable fast mode
+    let config = Config { fast: fast_mode };
+
+    println!("Fast mode enabled");
+    
+    println!(r#"██████ ██████ ██████ ██  ██  █████ 
   ██   ██  ██ ██     ██████ ██     
   ██   ██████ ██████ ██████  █████ 
   ██   ██     ██     ██  ██     ██ 
-██████ ██     ██████ ██  ██  █████ ");
+██████ ██     ██████ ██  ██  █████ "#);
+    config.sleep(Duration::from_millis(300));
     println!("iPod Execution Method Swapper");
+    config.sleep(Duration::from_millis(300));
     println!("Copyright ©TIS 2025");
+    config.sleep(Duration::from_secs(1));
     println!("This tool allows you to convert an Firmware.MSE file for a new way of modifying the firmware (themes, execution of unsigned code, etc.)");
+    config.sleep(Duration::from_millis(500));
     println!("This utility modifies the file to provide a new method, but it can also make your device not boot at all (get a softbrick). So far, no accidents have been reported, but they can happen at the most unexpected moment (I wrote this just to be on the safe side)");
     println!("Are you sure you want to continue?");
+    config.sleep(Duration::from_secs(2));
     println!("Press enter to confirm your choice, otherwise press Ctrl+C");
-    let _ = io::stdin().read(&mut [0u8]).unwrap();
+    press_enter();
+    config.sleep(Duration::from_secs(1));
     
     // Reading a file in mse_out
     let mut mse_out = fs::read("Firmware.MSE")?;
@@ -84,8 +114,10 @@ fn main() -> std::io::Result<()> {
     // ---- Logics ----
     if has_unpatched {
         println!("The file is not fully patched. There may have been an attempt to modify this file before. I can apply an additional patch, but I do not guarantee that the device will boot after this.");
+        config.sleep(Duration::from_secs(2));
         println!("Press Enter to continue, otherwise press Ctrl+C to cancel the operation");
-        let _ = io::stdin().read(&mut [0u8]).unwrap();
+        press_enter();
+        config.sleep(Duration::from_secs(1));
         // Let's move on to patching below
     } else if count_patched == 11 {
         // Everything is already done

@@ -34,11 +34,13 @@ This is useful when you are an experienced user and want to skip the wait before
 
 # Let's talk a little about exploits
 •disk swap
+
 In fact, it changes the partition assignments for disk mode and RetailOS, that is, RetailOS is disk mode, disk mode is RetailOS
 And in this situation, although you have to hold down the volume keys, this allows you to run unsigned code. I'll explain why.
 In short, in disk mode, the iPod does not check the rsrc partition for a valid signature, which opens a security hole, and this vulnerability works with both nano 6 and nano 7(2012 and 2015)(This might work on older nano models, but it's essentially pointless since they have full-fledged exploits)
 
 •UAE
+
 UAE or Unencrypted As Encrypted - A new exploit that, although only works on the nano 7, allows you to use the exploit without unnecessary keystrokes.
 This method is more clever, it changes the state of the resource section or rsrc from "unencrypted and signed" to "encrypted and signed", for some reason, this breaks the signature verification on both revisions of the iPod nano 7, and creates a security hole in the device that only requires modifying the firmware and changing one byte in it.
 

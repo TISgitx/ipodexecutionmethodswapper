@@ -42,8 +42,9 @@ fn main() -> std::io::Result<()> {
     let args: Vec<String> = env::args().collect();
     let fast_mode = args.iter().any(|a| a == "--fast"); // If there is --fast, enable fast mode
     let config = Config { fast: fast_mode };
-
+    if fast_mode {
     println!("Fast mode enabled");
+    }
     
     println!(r#"██████ ██████ ██████ ██  ██  █████ 
   ██   ██  ██ ██     ██████ ██     

@@ -41,7 +41,7 @@ In short, in disk mode, the iPod does not check the rsrc partition for a valid s
 
 •ByteFault
 
-ByteFault - A new exploit that, although only works on the nano 7, allows you to use the exploit without unnecessary keystrokes.
+ByteFau1t - A new exploit that, although only works on the nano 7, allows you to use the exploit without unnecessary keystrokes.
 This method is more clever, it changes the state of the resource section or rsrc from "unencrypted and signed" to "encrypted and signed", for some reason, this breaks the signature verification on both revisions of the iPod nano 7, and creates a security hole in the device that only requires modifying the firmware and changing one byte in it.
 
 # License

@@ -1,7 +1,7 @@
 ## iPod Execution Method Swapper (iPEMS)
 
 # About 
-iPEMS - A tool that allows you to quickly change the old method (disk swap) to a new one (unencrypted as encrypted (in short, UAE)) for iPod nano 7 2012 and 2015
+iPEMS - A tool that allows you to quickly change the old method (disk swap) to a new one (ByteFau1t) for iPod nano 7 2012 and 2015
 
 # What does the utility do?
 It performs many operations, in particular:
@@ -9,7 +9,7 @@ It performs many operations, in particular:
 •Checks swap partitions(which is used for partition swapping vulnerability)
 •Checks the status of rsrc partition(through a simple check for the presence of regular bytes for rsrc)
 •Performs reverse partition swap
-•Sets the value of the rsrc partition, from "unencrypted and signed" to "encrypted to encrypted and signed"(The whole point of the UAE exploit)
+•Sets the value of the rsrc partition, from "unencrypted and signed" to "encrypted to encrypted and signed"(The whole point of the ByteFau1t exploit)
 
 # Build:
 
